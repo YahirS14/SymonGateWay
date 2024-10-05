@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: "gateway"
+  cloud:
+    gateway:
+      routes:
+        - id: "msh"
+          uri: "lb://msh"
+          predicates:
+            - Path=/msh/**
+          filters:
+            - StripPrefix=1
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URI}
+server:
+  port: 8012
